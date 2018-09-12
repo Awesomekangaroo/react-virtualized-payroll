@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import { Modal } from './modal/Modal';
+import { Overlay } from './modal/Overlay';
 
 const rowHeight = 120;
 
@@ -25,14 +26,23 @@ class ListItemsBoard extends Component {
          },
          (err) => console.log(err)
       )
+      // Add esc key listener for modal.
+      document.addEventListener("keydown", this.closeModal, false);
    }
 
-   closeModal() {
+   componentWillUnmount() {
+      // Remove esc key listener for modal.
+      document.removeEventListener("keydown", this.closeModal, false);
+   }
+
+   closeModal(e) {
+      // If esc key press, close modal.
+      e.keycode === 27 ? this.setState({ isModalOpen: false }) : false;
+
       this.setState({ isModalOpen: false });
    }
 
    handleModal(item) {
-      console.log(item);
       this.setState(prevState => ({
          isModalOpen: !prevState.isModalOpen,
          currentModalInfo: item
@@ -41,6 +51,9 @@ class ListItemsBoard extends Component {
 
    renderList({ index, key, style }) {
       const item = this.state.list;
+      const titleColor = {
+         backgroundColor: item[index].profile_background
+      };
       return(
          <article key={key} style={style} className="list__item" onClick={(e) => this.handleModal(item[index])}>
             <div className="list__item-body">
@@ -49,7 +62,7 @@ class ListItemsBoard extends Component {
                   <span>{item[index].email}</span>
                </header>
                <div className="list__item-meta">
-                  <span className="list__item-job">{item[index].job_title}</span>
+                  <span className="list__item-job" style={titleColor}>{item[index].job_title}</span>
                   <span className="list__item-hours">{item[index].company}</span>
                </div>
             </div>
@@ -63,7 +76,11 @@ class ListItemsBoard extends Component {
    render() {
       return(
          <main className="index__wrapper">
-            { this.state.isModalOpen ? <Modal info={this.state.currentModalInfo} close={this.closeModal} /> : ''}
+            { this.state.isModalOpen ? 
+               (<div><Modal 
+                  info={this.state.currentModalInfo}
+                  close={this.closeModal} /> 
+               <Overlay /></div>) : null }
             { this.state.list ?
                <AutoSizer>
                {
@@ -73,10 +90,10 @@ class ListItemsBoard extends Component {
                      height={height}
                      rowHeight={rowHeight}
                      rowRenderer={this.renderList}
-                     rowCount={10} />
+                     rowCount={this.state.list.length} />
                   }
                }
-               </AutoSizer> : ''
+               </AutoSizer> : undefined
             }
          </main>
       )

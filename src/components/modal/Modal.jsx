@@ -28,6 +28,9 @@ export const Modal = (props) => {
             <p>Rate: <span>{person.pay.rate}</span></p>
             <div className="modal__cost-total">Total: <span>{`$${person.pay.rate * person.pay.hours}`}</span></div>
          </section>
+         <footer className="modal__footer">
+            <button className="modal__footer--close" style={{backgroundColor: person.profile_background}} onClick={props.close}>Close</button>
+         </footer>
       </div>
    )
 };

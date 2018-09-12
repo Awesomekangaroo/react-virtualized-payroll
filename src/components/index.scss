@@ -61,7 +61,7 @@
 .list__item-job {
    padding: 2px 8px;
    border-radius: 10px;
-   background-color: violet;
+   // background-color: violet;
    color: #fff;
 }
 
@@ -69,17 +69,27 @@
 .modal {
    position: absolute;
    top: 0;
-   bottom: 10px;
    left: 0;
    right: 0;
    width: 90%;
+   max-width: 500px;
    border: 1px solid #eee;
    border-radius: 3px;
    box-shadow: 0 0 0 2px hsla(0,0%,0%,0.1);
    margin: 20px auto 0;
-   padding: 35px 0;
+   padding-top: 35px;
    z-index: 100;
    background: #fff;
+}
+.modal__overlay {
+   position: absolute;
+   width: 100%;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background: rgba(0, 0,0, 0.5);
+   z-index: 50;
 }
 .close-modal {
    position: absolute;
@@ -91,7 +101,7 @@
    outline: none;
    border: none;
    border-radius: 50%;
-   background: #777;
+   background: #999;
    cursor: pointer;
 }
 .modal__header {
@@ -159,5 +169,24 @@
    span {
       font-style: italic;
       font-weight: normal;
+   }
+}
+
+.modal__footer {
+   padding: 25px;
+   text-align: right;
+}
+
+.modal__footer--close {
+   outline: none;
+   border: none;
+   padding: 10px 20px;
+   font-size: 18px;
+   font-weight: lighter;
+   color: #fff;
+   background: lightseagreen;
+   cursor: pointer;
+   &:hover {
+      background: rgba(220, 20, 60, 0.9);
    }
 }
