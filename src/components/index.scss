@@ -3,6 +3,8 @@
 .index__wrapper {
    padding: 25px 15px;
    background-color: #eee;
+   border-top: 4px solid palevioletred;
+   height: calc(100vh - 50px);
 }
 
 .index__header {
@@ -13,9 +15,9 @@
 }
 
 .list__item {
-   margin-bottom: 15px;
+   display: flex;
    padding: 10px;
-   background: #fff;
+   background-color: #fff;
    box-shadow: 0 0 0 2px hsla(0,0%,0%,0.1);
    border: 1px solid #ccc;
    border-radius: 5px;
@@ -23,7 +25,139 @@
 
 .list__item--title {
    margin-bottom: 5px;
-   font-size: 16px;
+   font-size: 18px;
    font-weight: bold;
    color: #1a1a1a;
+}
+
+.list__item--profile {
+   align-self: center;
+}
+
+.list__item-body {
+   display: flex;
+   flex: 1;
+   flex-direction: column;
+   overflow: hidden;
+   header {
+      padding-left: 3px;
+      margin-bottom: 15px;
+   }
+}
+
+.list__item-meta {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   white-space: nowrap;
+}
+
+.list__item-hours {
+   padding: 2px 8px;
+   background-color: papayawhip;
+   border-radius: 10px;
+}
+
+.list__item-job {
+   padding: 2px 8px;
+   border-radius: 10px;
+   background-color: violet;
+   color: #fff;
+}
+
+// Modal SCSS
+.modal {
+   position: absolute;
+   top: 0;
+   bottom: 10px;
+   left: 0;
+   right: 0;
+   width: 90%;
+   border: 1px solid #eee;
+   border-radius: 3px;
+   box-shadow: 0 0 0 2px hsla(0,0%,0%,0.1);
+   margin: 20px auto 0;
+   padding: 35px 0;
+   z-index: 100;
+   background: #fff;
+}
+.close-modal {
+   position: absolute;
+   top: -15px;
+   right: -15px;
+   padding: 5px 10px;
+   font-size: 18px;
+   color: #fff;
+   outline: none;
+   border: none;
+   border-radius: 50%;
+   background: #777;
+   cursor: pointer;
+}
+.modal__header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: relative;
+   padding: 0 15px 15px;
+}
+.modal__email {
+   color: palevioletred;
+   text-decoration: underline;
+}
+.modal__image {
+   align-self: flex-start;
+}
+.modal__residency-wrapper {
+   font-size: 18px;
+   border-top: 1px solid #ccc;
+   padding: 25px 15px;
+   line-height: 110%;
+   p {
+      font-size: 18px;
+   }
+}
+.modal__body-content {
+   font-size: 17px;
+   line-height: 120%;
+   h1 {
+      font-size: 20px;
+      font-weight: 600;
+   }
+   h3 {
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-style: italic;
+   }
+}
+
+.modal__job--title {
+   font-size: 13px;
+   margin-bottom: 7px;
+}
+
+.modal__cost-wrapper {
+   padding: 35px 15px;
+   border-top: 2px solid #ccc;
+   background-color: papayawhip;
+   h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+   }
+}
+
+.modal__cost-date {
+   margin-bottom: 15px;
+   font-size: 16px;
+}
+
+.modal__cost-total {
+   margin-top: 15px;
+   font-size: 17px;
+   font-weight: bold;
+   span {
+      font-style: italic;
+      font-weight: normal;
+   }
 }
