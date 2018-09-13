@@ -21,6 +21,9 @@
    box-shadow: 0 0 0 2px hsla(0,0%,0%,0.1);
    border: 1px solid #ccc;
    border-radius: 5px;
+   &:hover {
+      box-shadow: 0 0 0 2px hsla(0,0%,0%,0.7);
+   }
 }
 
 .list__item--title {
@@ -188,5 +191,87 @@
    cursor: pointer;
    &:hover {
       background: rgba(220, 20, 60, 0.9);
+   }
+}
+
+// Filter config
+.filter-config__container {
+   position: relative;
+   margin: 0 15px;
+   padding: 15px 25px;
+   border: 1px solid #eee;
+   border-radius: 3px;
+   box-shadow: 0 0 0 2px hsla(0,0%,0%,0.03);
+}
+.filter__section {
+   display: flex;
+   justify-content: space-between;
+   max-width: 200px;
+   color: #3a3a3a;
+}
+.filter__config--btn {
+   outline: none;
+   border: none;
+   background: transparent;
+   font-size: 13px;
+   padding: 3px 7px;
+   border-radius: 3px;
+   cursor: pointer;
+   &:hover {
+      background: #eee;
+   }
+}
+.filter__icon--text {
+   font-size: 17px;
+   margin-left: 10px;
+}
+
+// Filter search
+.filter__search-wrapper {
+   position: absolute;
+   margin: 0 auto;
+   max-width: 700px;
+   top: 57px;
+   left: 10px;
+   right: 10px;
+   z-index: 100;
+   background: #fff;
+}
+.filter__search-form {
+   color: #777;
+   input {
+      width: 100%;
+      padding: 10px 15px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      box-shadow: 0 0 0 2px hsla(0,0%,0%,0.1);
+      color: #777;
+   }
+}
+
+.filter__typeahead {
+   width: 100%;
+   padding: 15px;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+}
+
+.filter__item {
+   display: flex;
+   justify-content: space-between;
+   padding: 7px 0;
+   font-size: 18px;
+   border-bottom: 1px solid #ccc;
+   svg, i {
+      font-size: 15px;
+      margin-left: 10px;
+   }
+   &:first-child {
+      padding-top: 0;
+   }
+   &:last-child {
+      border-bottom: none;
    }
 }

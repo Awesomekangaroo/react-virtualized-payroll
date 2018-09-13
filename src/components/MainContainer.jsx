@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ListItemsBoard from './ListItemsBoard';
-import ListItem from './Items/ListItem';
+import './Icon';
 
 import './index.scss';
 

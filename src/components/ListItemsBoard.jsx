@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import { Modal } from './modal/Modal';
 import { Overlay } from './modal/Overlay';
+import { FilterContainer } from './Filter/FilterContainer';
 
 const rowHeight = 120;
 
@@ -38,7 +39,6 @@ class ListItemsBoard extends Component {
    closeModal(e) {
       // If esc key press, close modal.
       e.keycode === 27 ? this.setState({ isModalOpen: false }) : false;
-
       this.setState({ isModalOpen: false });
    }
 
@@ -75,27 +75,30 @@ class ListItemsBoard extends Component {
 
    render() {
       return(
-         <main className="index__wrapper">
-            { this.state.isModalOpen ? 
-               (<div><Modal 
-                  info={this.state.currentModalInfo}
-                  close={this.closeModal} /> 
-               <Overlay /></div>) : null }
-            { this.state.list ?
-               <AutoSizer>
-               {
-                  ({ width, height }) => {
-                  return <List
-                     width={width}
-                     height={height}
-                     rowHeight={rowHeight}
-                     rowRenderer={this.renderList}
-                     rowCount={this.state.list.length} />
+         <Fragment>
+            <FilterContainer list={this.state.list} />
+            <main className="index__wrapper">
+               { this.state.isModalOpen ? 
+                  (<Fragment><Modal 
+                     info={this.state.currentModalInfo}
+                     close={this.closeModal} /> 
+                  <Overlay /></Fragment>) : null }
+               { this.state.list ?
+                  <AutoSizer>
+                  {
+                     ({ width, height }) => {
+                        return <List
+                        width={width}
+                        height={height}
+                        rowHeight={rowHeight}
+                        rowRenderer={this.renderList}
+                        rowCount={this.state.list.length} />
+                     }
                   }
+                  </AutoSizer> : undefined
                }
-               </AutoSizer> : undefined
-            }
-         </main>
+            </main>
+         </Fragment>
       )
    }
 };
