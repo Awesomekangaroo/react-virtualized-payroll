@@ -1,7 +1,7 @@
 {
   "name": "react-virtualized-payment",
   "version": "1.0.0",
-  "description": "",
+  "description": "Add React virtualized list for mock payroll dashboard",
   "main": "index.js",
   "repository": {
     "type": "git",
