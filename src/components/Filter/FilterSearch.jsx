@@ -10,6 +10,19 @@ export class FilterSearch extends Component {
       }
       this.getSearchFilter = this.getSearchFilter.bind(this);
       this.handleQueryUpdate = this.handleQueryUpdate.bind(this);
+      this.closeSearch = this.closeSearch.bind(this);
+   }
+
+   componentDidMount() {
+      document.addEventListener("keydown", this.closeSearch, false);
+   }
+
+   componentWillUnmount() {
+      document.removeEventListener("keydown", this.closeSearch, false);
+   }
+
+   closeSearch(e) {
+      e.keyCode === 27 ? this.props.toggle() : null;
    }
 
    handleQueryUpdate(e) {
@@ -26,11 +39,9 @@ export class FilterSearch extends Component {
          this.props.list.forEach(element => {
             if (element.first_name === this.state.queryValue) {
                filteredItems.push(element);
-               console.log('This element matches: ', element);
             }
             this.setState({ queryResult: filteredItems });
          });
-         // console.log('All items: ', filteredItems);
       }
    }
 
