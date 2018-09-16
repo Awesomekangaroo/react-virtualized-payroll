@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from '../modal/Modal';
 import { ModalPersonDetail } from '../modal/ModalPersonDetail';
-import { Overlay } from '../modal/Overlay';
 
 export class FilterTypeAhead extends Component {
    constructor() {
@@ -20,7 +19,6 @@ export class FilterTypeAhead extends Component {
    }
 
    render() {
-      console.log(this.props);
       return(
          <ul className="filter__typeahead">
             { this.props.detail.map((item) => 
