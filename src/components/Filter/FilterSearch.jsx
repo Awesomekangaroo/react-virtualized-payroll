@@ -57,7 +57,11 @@ export class FilterSearch extends Component {
                   onChange={this.handleQueryUpdate} />
             </form>
             { this.state.queryResult.length > 0 ? 
-               <FilterTypeAhead detail={this.state.queryResult} /> : undefined }
+               <FilterTypeAhead 
+                  detail={this.state.queryResult} 
+                  currentModalInfo={this.state.queryResult}
+                  toggle={this.props.toggle}
+                   /> : undefined }
          </div>
       )
    }
