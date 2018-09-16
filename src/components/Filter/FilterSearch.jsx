@@ -37,10 +37,8 @@ export class FilterSearch extends Component {
       if(value.length > 1) {
          const filteredItems = [];
          const regex = new RegExp(value, 'i');
-         console.log(regex);
          this.props.list.forEach(element => {
             if (regex.test(element.first_name) === regex.test(this.state.queryValue)) {
-               console.log('I MATCHED!');
                filteredItems.push(element);
             }
             this.setState({ queryResult: filteredItems });

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { List, AutoSizer } from 'react-virtualized';
 import { Modal } from './modal/Modal';
 import { Overlay } from './modal/Overlay';
+import { ModalPersonDetail } from './modal/ModalPersonDetail';
 import { FilterContainer } from './Filter/FilterContainer';
 
 const rowHeight = 120;
@@ -79,9 +80,12 @@ class ListItemsBoard extends Component {
             <FilterContainer list={this.state.list} />
             <main className="index__wrapper">
                { this.state.isModalOpen ? 
-                  (<Fragment><Modal 
-                     info={this.state.currentModalInfo}
-                     close={this.closeModal} /> 
+                  (<Fragment>
+                     <Modal>
+                        <ModalPersonDetail
+                           info={this.state.currentModalInfo}
+                           close={this.closeModal} />
+                     </Modal>
                   <Overlay /></Fragment>) : null }
                { this.state.list ?
                   <AutoSizer>
