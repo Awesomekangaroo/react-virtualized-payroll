@@ -9,22 +9,10 @@ export class FilterContainer extends Component {
          isSearchOpen: false,
          list: undefined
       }
-
       this.toggleSearch = this.toggleSearch.bind(this);
    };
-   
-   componentDidMount() {
-      document.addEventListener("keydown", this.toggleSearch, false);
-   }
 
-   componentWillUnmount() {
-      document.removeEventListener("keydown", this.toggleSearch, false);
-   }
-
-   toggleSearch(e) {
-      e.keycode === 27 ? 
-         this.setState({ isSearchOpen: false }) : null;
-         
+   toggleSearch() {
       this.setState(prevState => ({
          isSearchOpen: !prevState.isSearchOpen
       }));
@@ -51,7 +39,7 @@ export class FilterContainer extends Component {
                   <span className="filter__icon--text">Search</span>
                </button>
             </aside>
-            { this.state.isSearchOpen ? <FilterSearch list={this.state.list} /> : undefined }
+            { this.state.isSearchOpen ? <FilterSearch list={this.state.list} toggle={this.toggleSearch} /> : undefined }
          </section>
       )
    }
