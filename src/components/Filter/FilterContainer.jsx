@@ -26,20 +26,20 @@ export class FilterContainer extends Component {
       }
    }
    
-   render(){
-      return(
+   render() {
+      return (
          <section className="filter-config__container">
             <aside className="filter__section">
-               <button className="filter__config--btn">
+               {/* <button className="filter__config--btn">
                   <FontAwesomeIcon icon="sort" />
                   <span className="filter__icon--text">Sort</span>
-               </button>
+               </button> */}
                <button className="filter__config--btn" onClick={this.toggleSearch}>
                   <FontAwesomeIcon icon="search" />
                   <span className="filter__icon--text">Search</span>
                </button>
             </aside>
-            { this.state.isSearchOpen ? <FilterSearch list={this.state.list} toggle={this.toggleSearch} /> : undefined }
+            { this.state.isSearchOpen ? <FilterSearch list={this.state.list} toggle={this.toggleSearch} /> : null }
          </section>
       )
    }

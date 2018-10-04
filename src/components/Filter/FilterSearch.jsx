@@ -14,6 +14,7 @@ export class FilterSearch extends Component {
    }
 
    componentDidMount() {
+      this.searchInput.focus();
       document.addEventListener("keydown", this.closeSearch, false);
    }
 
@@ -51,7 +52,8 @@ export class FilterSearch extends Component {
          <div className="filter__search-wrapper">
             <form className="filter__search-form" onSubmit={(e) => e.preventDefault()}>
                <label htmlFor="search_list" hidden>Search list items</label>
-               <input 
+               <input
+                  ref={input => this.searchInput = input}
                   type="search" 
                   name="search_list" autoComplete="off" placeholder="Find in view" title="Search for items in view"
                   onChange={this.handleQueryUpdate} />
@@ -61,7 +63,7 @@ export class FilterSearch extends Component {
                   detail={this.state.queryResult} 
                   currentModalInfo={this.state.queryResult}
                   toggle={this.props.toggle}
-                   /> : undefined }
+               /> : null }
          </div>
       )
    }

@@ -12,7 +12,6 @@
   },
   "scripts": {
     "start": "webpack --mode production",
-    "heroku-postbuild": "npm run json",
     "dev": "concurrently \"npm run server\" \"npm run json\"",
     "server": "webpack-dev-server --mode development --hot",
     "json": "json-server --watch server/db.json"

@@ -13,7 +13,7 @@ class ListItemsBoard extends Component {
       this.state = {
          list: false,
          isModalOpen: false,
-         currentModalInfo: undefined
+         currentModalInfo: null
       }
       this.renderList = this.renderList.bind(this);
       this.closeModal = this.closeModal.bind(this);
@@ -39,8 +39,7 @@ class ListItemsBoard extends Component {
 
    closeModal(e) {
       // If esc key press, close modal.
-      e.keycode === 27 ? this.setState({ isModalOpen: false }) : false;
-      this.setState({ isModalOpen: false });
+      e.keyCode === 27 ? this.setState({ isModalOpen: false }) : null;
    }
 
    handleModal(item) {
