@@ -22,24 +22,20 @@ class ListItemsBoard extends Component {
    componentDidMount() {
       fetch('http://localhost:3000/staff')
       .then(res => res.json())
-      .then(
-         (res) => {
-            this.setState({ list: res })
-         },
-         (err) => console.log(err)
-      )
-      // Add esc key listener for modal.
+      .then(res => this.setState({ list: res }))
+      .catch(err => console.log(err));
+
       document.addEventListener("keydown", this.closeModal, false);
    }
 
    componentWillUnmount() {
-      // Remove esc key listener for modal.
       document.removeEventListener("keydown", this.closeModal, false);
    }
 
    closeModal(e) {
       // If esc key press, close modal.
-      e.keycode === 27 ? this.setState({ isModalOpen: false }) : false;
+      e.keycode === 27 ? 
+         this.setState({ isModalOpen: false }) : false;
       this.setState({ isModalOpen: false });
    }
 
@@ -68,7 +64,7 @@ class ListItemsBoard extends Component {
                </div>
             </div>
             <aside className="list__item--profile">
-               <img src={item[index].profile_image} alt={`Image of ${item[index].first_name}`}/>
+               {/* <img src={item[index].profile_image} alt={`Image of ${item[index].first_name}`}/> */}
             </aside>
          </article>
       );
@@ -78,30 +74,29 @@ class ListItemsBoard extends Component {
       return(
          <Fragment>
             <FilterContainer list={this.state.list} />
-            <main className="index__wrapper">
-               { this.state.isModalOpen ? 
-                  (<Fragment>
-                     <Modal>
-                        <ModalPersonDetail
-                           info={this.state.currentModalInfo}
-                           close={this.closeModal} />
-                     </Modal>
-                  <Overlay /></Fragment>) : null }
-               { this.state.list ?
-                  <AutoSizer>
-                  {
-                     ({ width, height }) => {
-                        return <List
-                        width={width}
-                        height={height}
-                        rowHeight={rowHeight}
-                        rowRenderer={this.renderList}
-                        rowCount={this.state.list.length} />
-                     }
+               <main className="index__wrapper">
+                  {this.state.isModalOpen && 
+                     <Fragment>
+                        <Modal>
+                           <ModalPersonDetail
+                              info={this.state.currentModalInfo}
+                              close={this.closeModal} />
+                        <Overlay />
+                        </Modal>
+                     </Fragment>
                   }
-                  </AutoSizer> : undefined
-               }
-            </main>
+                  { this.state.list &&
+                     <AutoSizer>
+                        { ({ width, height }) => {
+                              return <List
+                              width={width}
+                              height={height}
+                              rowHeight={rowHeight}
+                              rowRenderer={this.renderList}
+                              rowCount={this.state.list.length} />
+                           } }
+                     </AutoSizer> }
+               </main>
          </Fragment>
       )
    }

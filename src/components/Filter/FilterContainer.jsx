@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FilterSearch } from './FilterSearch';
+import FilterSearch from './FilterSearch';
+import SortContainer from '../Sort/SortContainer';
 
 export class FilterContainer extends Component {
    constructor(props) {
       super(props);
       this.state = {
          isSearchOpen: false,
+         isSortOpen: false,
          list: undefined
       }
       this.toggleSearch = this.toggleSearch.bind(this);
+      this.toggleSort = this.toggleSort.bind(this);
    };
 
    toggleSearch() {
       this.setState(prevState => ({
          isSearchOpen: !prevState.isSearchOpen
       }));
+   }
+
+   toggleSort(event) {
+      this.setState(prevState => ({
+         isSortOpen: !prevState.isSortOpen
+      }))
    }
 
    componentWillUpdate(nextState) {
@@ -26,11 +35,11 @@ export class FilterContainer extends Component {
       }
    }
    
-   render(){
+   render() {
       return(
          <section className="filter-config__container">
             <aside className="filter__section">
-               <button className="filter__config--btn">
+               <button className="filter__config--btn" onClick={this.toggleSort}>
                   <FontAwesomeIcon icon="sort" />
                   <span className="filter__icon--text">Sort</span>
                </button>
@@ -39,7 +48,12 @@ export class FilterContainer extends Component {
                   <span className="filter__icon--text">Search</span>
                </button>
             </aside>
-            { this.state.isSearchOpen ? <FilterSearch list={this.state.list} toggle={this.toggleSearch} /> : undefined }
+
+            { this.state.isSearchOpen &&
+               <FilterSearch list={this.state.list} toggle={this.toggleSearch} />}
+
+            { this.state.isSortOpen &&
+               <SortContainer toggle={this.toggleSort} /> }
          </section>
       )
    }

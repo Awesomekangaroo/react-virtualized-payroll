@@ -13,7 +13,7 @@ export const ModalPersonDetail = (props) => {
                <span className="modal__email">{person.email}</span>
             </div>
             <div className="modal__image">
-               <img src={person.profile_image} alt={`Image of ${person.name}`}/>
+               {/* <img src={person.profile_image} alt={`Image of ${person.name}`}/> */}
             </div>
          </section>
          <div className="modal__residency-wrapper">
@@ -26,7 +26,7 @@ export const ModalPersonDetail = (props) => {
             <p className="modal__cost-date">Date: {person.pay.date}</p>
             <p>Hours: <span>{person.pay.hours}</span></p>
             <p>Rate: <span>{person.pay.rate}</span></p>
-            <div className="modal__cost-total">Total: <span>{`$${person.pay.rate * person.pay.hours}`}</span></div>
+            <div className="modal__cost-total">Total: <span>{`$${(person.pay.rate * person.pay.hours).toFixed(2)}`}</span></div>
          </section>
          <footer className="modal__footer">
             <button className="modal__footer--close" style={{backgroundColor: person.profile_background}} onClick={props.close}>Close</button>
