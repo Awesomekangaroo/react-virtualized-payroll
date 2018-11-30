@@ -42,7 +42,7 @@ export class FilterContainer extends Component {
                <button className="filter__config--btn" onClick={this.toggleSort}>
                   <FontAwesomeIcon icon="sort" />
                   <span className="filter__icon--text">Sort</span>
-               </button>
+               </button> */}
                <button className="filter__config--btn" onClick={this.toggleSearch}>
                   <FontAwesomeIcon icon="search" />
                   <span className="filter__icon--text">Search</span>

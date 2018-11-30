@@ -13,7 +13,7 @@ class ListItemsBoard extends Component {
       this.state = {
          list: false,
          isModalOpen: false,
-         currentModalInfo: undefined
+         currentModalInfo: null
       }
       this.renderList = this.renderList.bind(this);
       this.closeModal = this.closeModal.bind(this);
